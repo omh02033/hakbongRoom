@@ -16,12 +16,15 @@
     "@types/knex": "^0.16.1",
     "@types/morgan": "^1.9.3",
     "@types/request-promise": "^4.1.48",
+    "@types/socket.io": "^3.0.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "socket.io": "^4.4.1",
+    "ts-node": "^10.5.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

@@ -17,7 +17,7 @@ router
     const student = await dimiApi.getStudent(dimiUser.username);
     switch(dimiUser.user_type) {
         case 'S':
-            if(student?.gender === "G") return res.status(400).json({ success: false, message: "이 서비스는 학봉관(남자 기숙사) 학생만 이용할 수 있습니다." });
+            if(student?.gender === "F") return res.status(400).json({ success: false, message: "이 서비스는 학봉관(남자 기숙사) 학생만 이용할 수 있습니다." });
             if(student?.grade !== 1) return res.status(400).json({ success: false, message: "이 서비스는 임시로 20기 학생만 이용할 수 있습니다." });
             identity = student;
             break;

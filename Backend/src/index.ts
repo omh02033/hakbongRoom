@@ -1,5 +1,6 @@
 import App from "./app";
 import "./config/env";
+import { serverSocket } from "./socket";
 
 declare global {
     namespace Express {
@@ -13,8 +14,10 @@ declare global {
     }
 }
 
-if(!process.env.DATABASE_HOST) {
-    console.log('env configuration required.');
-} else {
-    App.listen(process.env.WEB_PORT, () => { console.log('Connected'); });
+if(!process.env.DATABASE_HOST) console.log('env configuration required.');
+else {
+    const httpServer = App.listen(process.env.WEB_PORT, () => {
+        console.log("Connected");
+    });
+    serverSocket(httpServer);
 }
