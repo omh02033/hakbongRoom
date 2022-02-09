@@ -12,8 +12,28 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- 테이블 데이터 hakbongroom.room:~21 rows (대략적) 내보내기
-DELETE FROM `room`;
+
+-- hakbongroom 데이터베이스 구조 내보내기
+CREATE DATABASE IF NOT EXISTS `hakbongroom` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `hakbongroom`;
+
+-- 테이블 hakbongroom.room 구조 내보내기
+CREATE TABLE IF NOT EXISTS `room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `room` varchar(50) DEFAULT NULL,
+  `limit` int(11) DEFAULT NULL,
+  `personnel` int(11) NOT NULL DEFAULT 0,
+  `floor` int(11) DEFAULT NULL,
+  `c1` int(11) DEFAULT NULL,
+  `c2` int(11) DEFAULT NULL,
+  `c3` int(11) DEFAULT NULL,
+  `c4` int(11) DEFAULT NULL,
+  `c5` int(11) DEFAULT NULL,
+  `c6` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+
+-- 테이블 데이터 hakbongroom.room:~22 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 INSERT INTO `room` (`id`, `room`, `limit`, `personnel`, `floor`, `c1`, `c2`, `c3`, `c4`, `c5`, `c6`) VALUES
 	(1, '407', 6, 0, 4, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -40,8 +60,19 @@ INSERT INTO `room` (`id`, `room`, `limit`, `personnel`, `floor`, `c1`, `c2`, `c3
 	(24, '507', 6, 0, 5, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
+-- 테이블 hakbongroom.roomapplicant 구조 내보내기
+CREATE TABLE IF NOT EXISTS `roomapplicant` (
+  `id` int(11) NOT NULL,
+  `roomId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `class` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_ROOM_ID` (`roomId`),
+  CONSTRAINT `FK_ROOM_ID` FOREIGN KEY (`roomId`) REFERENCES `room` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- 테이블 데이터 hakbongroom.roomapplicant:~0 rows (대략적) 내보내기
-DELETE FROM `roomapplicant`;
 /*!40000 ALTER TABLE `roomapplicant` DISABLE KEYS */;
 /*!40000 ALTER TABLE `roomapplicant` ENABLE KEYS */;
 
