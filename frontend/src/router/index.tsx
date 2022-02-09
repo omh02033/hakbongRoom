@@ -2,8 +2,14 @@ import React, { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import useAuth from 'hook/auth';
 import Loading from 'components/Loading';
-import PublicRouter from './publicRouter';
-import PrivateRouter from './privateRouter';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Login, Main } from 'pages';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+const Redirector: React.VFC = () => (
+    <Navigate to='/' />
+);
 
 const App: React.FC = () => {
     const auth = useAuth();
@@ -13,7 +19,13 @@ const App: React.FC = () => {
             <Loading show={auth.user === undefined} />
             <ToastContainer />
             {auth.user !== undefined && (
-                auth.user ? <PrivateRouter /> : <PublicRouter />
+                <Routes>
+                    <Route path='/' element={<Main />} />
+                    {!auth.user && (
+                        <Route path='/login' element={<Login />} />
+                    )}
+                    <Route element={Redirector} />
+                </Routes>
             )}
         </Suspense>
     );

@@ -1,6 +1,9 @@
 export interface DBRooms {
     id: number;
     room: string;
+    limit: number;
+    personnel: number;
+    floor: number;
 }
 
 export interface DBRoomApplicant {

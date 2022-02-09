@@ -7,7 +7,6 @@ export default {
     jwt: {
         key: process.env.JWT_KEY,
         options: {
-            expiresIn: '5m',
             algorithm: alg
         }
     },

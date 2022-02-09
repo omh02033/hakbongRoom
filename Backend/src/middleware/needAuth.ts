@@ -13,6 +13,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
     if(!token) return res.send(false);
     jwt.verify(token, CONF.jwt.key as string, (err: VerifyErrors | null, decoded: string | JwtPayload | undefined) => {
         if(!err) {
+            // if("TD".indexOf((decoded as tokenInterface).roleId) !== -1) {}
             req.auth = decoded as tokenInterface;
             next();
         } else return res.send(false);
