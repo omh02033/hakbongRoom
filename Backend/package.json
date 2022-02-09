@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
+    "@types/dotenv": "^8.2.0",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/knex": "^0.16.1",
     "@types/morgan": "^1.9.3",
@@ -19,6 +20,8 @@
     "@types/socket.io": "^3.0.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",

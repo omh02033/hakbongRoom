@@ -3,6 +3,7 @@ import * as dimiApi from "../api/dimiapi";
 import knex from "../config/db";
 import jwt, { Jwt } from "jsonwebtoken";
 import CONF from "../config";
+import { tokenInterface } from "../interfaces";
 
 const router = Router();
 
@@ -36,6 +37,20 @@ router
         identity
     }, CONF.jwt.key as string, CONF.jwt.options);
     res.status(200).json({ success: true, message: "디미고 로그인에 성공했어요.", token });
+})
+
+.get('/isLogin', async (req: Request, res: Response) => {
+    const token = req.headers.authorization;
+    if(!token) return res.status(200).json({
+        login: false,
+        data: null
+    });
+    
+    const decoded: tokenInterface | jwt.JwtPayload | string = jwt.verify(token, CONF.jwt.key as string);
+    res.status(200).json({
+        login: true,
+        data: decoded
+    });
 })
 
 export default router;
